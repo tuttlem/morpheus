@@ -2,12 +2,12 @@ from server.app import db, ma
 
 
 class Stadium(db.Model):
-    __tablename__ = 'stadiums'
+    __tablename__ = 'stadium'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    location = db.Column(db.String(80))
-    image = db.Column(db.String(80))
+    name = db.Column(db.String(80), required=True)
+    location = db.Column(db.String(80), required=True)
+    image = db.Column(db.String(80), required=True)
 
     def __init__(self, name, location, image):
         self.name = name

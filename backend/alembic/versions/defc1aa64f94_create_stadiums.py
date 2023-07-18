@@ -18,11 +18,13 @@ depends_on = None
 
 def upgrade() -> None:
     stadium_table = op.create_table(
-        'stadiums',
-        sa.Column('id', sa.Integer, primary_key=True),
+        'stadium',
+        sa.Column('id', sa.Integer),
         sa.Column('name', sa.String(80), nullable=False),
         sa.Column('location', sa.String(80), nullable=False),
         sa.Column('image', sa.String(80), nullable=False),
+
+        sa.PrimaryKeyConstraint('id'),
     )
 
     op.bulk_insert(
@@ -50,4 +52,4 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table('stadiums')
+    op.drop_table('stadium')
