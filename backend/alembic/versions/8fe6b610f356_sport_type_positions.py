@@ -32,21 +32,21 @@ def safe_get(list, key, default=None):
     return next(filter(lambda x: x.name == key, list), default).id
 
 def upgrade() -> None:
-    sport_types_position_type_table = op.create_table(
-        'sport_type_position_type',
+    sport_position_table = op.create_table(
+        'sport_position',
         sa.Column('id', sa.Integer, nullable=False),
-        sa.Column('sport_type_id', sa.Integer, nullable=False),
-        sa.Column('position_type_id', sa.Integer, nullable=False),
+        sa.Column('sport_id', sa.Integer, nullable=False),
+        sa.Column('position_id', sa.Integer, nullable=False),
         sa.Column('number', sa.Integer, nullable=False),
 
         sa.PrimaryKeyConstraint('id'),
-        sa.ForeignKeyConstraint(['sport_type_id'], ['sport_type.id']),
-        sa.ForeignKeyConstraint(['position_type_id'], ['position_type.id']),
+        sa.ForeignKeyConstraint(['sport_id'], ['sport.id']),
+        sa.ForeignKeyConstraint(['position_id'], ['position.id']),
     )
 
     conn = op.get_bind()
-    sport_types = list(conn.execute(text('SELECT id, name FROM sport_type')))
-    position_types = list(conn.execute(text('SELECT id, name FROM position_type')))
+    sport_types = list(conn.execute(text('SELECT id, name FROM sport')))
+    position_types = list(conn.execute(text('SELECT id, name FROM position')))
 
     ru_id = safe_get(sport_types, 'Rugby Union')
     rl_id = safe_get(sport_types, 'Rugby League')
@@ -72,40 +72,40 @@ def upgrade() -> None:
     fbk_id = safe_get(position_types, 'Full Back')
 
     op.bulk_insert(
-        sport_types_position_type_table,
+        sport_position_table,
         [
-            {"sport_type_id": ru_id, "position_type_id": lhp_id, "number": 1},
-            {"sport_type_id": ru_id, "position_type_id": hkr_id, "number": 2},
-            {"sport_type_id": ru_id, "position_type_id": thp_id, "number": 3},
-            {"sport_type_id": ru_id, "position_type_id": lck_id, "number": 4},
-            {"sport_type_id": ru_id, "position_type_id": lck_id, "number": 5},
-            {"sport_type_id": ru_id, "position_type_id": bsf_id, "number": 6},
-            {"sport_type_id": ru_id, "position_type_id": osf_id, "number": 7},
-            {"sport_type_id": ru_id, "position_type_id": no8_id, "number": 8},
-            {"sport_type_id": ru_id, "position_type_id": sch_id, "number": 9},
-            {"sport_type_id": ru_id, "position_type_id": fhf_id, "number": 10},
-            {"sport_type_id": ru_id, "position_type_id": lfw_id, "number": 11},
-            {"sport_type_id": ru_id, "position_type_id": isc_id, "number": 12},
-            {"sport_type_id": ru_id, "position_type_id": oss_id, "number": 13},
-            {"sport_type_id": ru_id, "position_type_id": rtw_id, "number": 14},
-            {"sport_type_id": ru_id, "position_type_id": fbk_id, "number": 15},
+            {"sport_id": ru_id, "position_id": lhp_id, "number": 1},
+            {"sport_id": ru_id, "position_id": hkr_id, "number": 2},
+            {"sport_id": ru_id, "position_id": thp_id, "number": 3},
+            {"sport_id": ru_id, "position_id": lck_id, "number": 4},
+            {"sport_id": ru_id, "position_id": lck_id, "number": 5},
+            {"sport_id": ru_id, "position_id": bsf_id, "number": 6},
+            {"sport_id": ru_id, "position_id": osf_id, "number": 7},
+            {"sport_id": ru_id, "position_id": no8_id, "number": 8},
+            {"sport_id": ru_id, "position_id": sch_id, "number": 9},
+            {"sport_id": ru_id, "position_id": fhf_id, "number": 10},
+            {"sport_id": ru_id, "position_id": lfw_id, "number": 11},
+            {"sport_id": ru_id, "position_id": isc_id, "number": 12},
+            {"sport_id": ru_id, "position_id": oss_id, "number": 13},
+            {"sport_id": ru_id, "position_id": rtw_id, "number": 14},
+            {"sport_id": ru_id, "position_id": fbk_id, "number": 15},
 
-            {"sport_type_id": rl_id, "position_type_id": fbk_id, "number": 1},
-            {"sport_type_id": rl_id, "position_type_id": rtw_id, "number": 2},
-            {"sport_type_id": rl_id, "position_type_id": oss_id, "number": 3},
-            {"sport_type_id": rl_id, "position_type_id": isc_id, "number": 4},
-            {"sport_type_id": rl_id, "position_type_id": lfw_id, "number": 5},
-            {"sport_type_id": rl_id, "position_type_id": fet_id, "number": 6},
-            {"sport_type_id": rl_id, "position_type_id": hfb_id, "number": 7},
-            {"sport_type_id": rl_id, "position_type_id": frf_id, "number": 8},
-            {"sport_type_id": rl_id, "position_type_id": hkr_id, "number": 9},
-            {"sport_type_id": rl_id, "position_type_id": frf_id, "number": 10},
-            {"sport_type_id": rl_id, "position_type_id": srf_id, "number": 11},
-            {"sport_type_id": rl_id, "position_type_id": srf_id, "number": 12},
-            {"sport_type_id": rl_id, "position_type_id": lkf_id, "number": 13},
+            {"sport_id": rl_id, "position_id": fbk_id, "number": 1},
+            {"sport_id": rl_id, "position_id": rtw_id, "number": 2},
+            {"sport_id": rl_id, "position_id": oss_id, "number": 3},
+            {"sport_id": rl_id, "position_id": isc_id, "number": 4},
+            {"sport_id": rl_id, "position_id": lfw_id, "number": 5},
+            {"sport_id": rl_id, "position_id": fet_id, "number": 6},
+            {"sport_id": rl_id, "position_id": hfb_id, "number": 7},
+            {"sport_id": rl_id, "position_id": frf_id, "number": 8},
+            {"sport_id": rl_id, "position_id": hkr_id, "number": 9},
+            {"sport_id": rl_id, "position_id": frf_id, "number": 10},
+            {"sport_id": rl_id, "position_id": srf_id, "number": 11},
+            {"sport_id": rl_id, "position_id": srf_id, "number": 12},
+            {"sport_id": rl_id, "position_id": lkf_id, "number": 13},
         ],
     )
 
 
 def downgrade() -> None:
-    op.drop_table('sport_type_position_type')
+    op.drop_table('sport_position')

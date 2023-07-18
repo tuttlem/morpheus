@@ -17,8 +17,8 @@ depends_on = None
 
 
 def upgrade() -> None:
-    sport_type_table = op.create_table(
-        'sport_type',
+    sport_table = op.create_table(
+        'sport',
         sa.Column('id', sa.Integer, nullable=False),
         sa.Column('name', sa.String(80), nullable=False),
         sa.Column('active', sa.Boolean, nullable=False, default=True),
@@ -27,7 +27,7 @@ def upgrade() -> None:
     )
 
     op.bulk_insert(
-        sport_type_table,
+        sport_table,
         [
             {"name": "Rugby League", "active": True},
             {"name": "Rugby Union", "active": True},
@@ -36,5 +36,5 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table('sport_type')
+    op.drop_table('sport')
 

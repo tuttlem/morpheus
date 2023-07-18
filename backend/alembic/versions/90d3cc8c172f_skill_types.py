@@ -17,8 +17,8 @@ depends_on = None
 
 
 def upgrade() -> None:
-    skill_type_table = op.create_table(
-        'skill_type',
+    skill_table = op.create_table(
+        'skill',
         sa.Column('id', sa.Integer, nullable=False),
         sa.Column('name', sa.String(80), nullable=False),
         sa.Column('active', sa.Boolean, nullable=False, default=True),
@@ -27,7 +27,7 @@ def upgrade() -> None:
     )
 
     op.bulk_insert(
-        skill_type_table,
+        skill_table,
         [
             {"name": "Running", "active": True},
             {"name": "Passing", "active": True},
@@ -40,5 +40,5 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table('skill_type')
+    op.drop_table('skill')
 

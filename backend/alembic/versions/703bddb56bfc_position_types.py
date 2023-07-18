@@ -17,8 +17,8 @@ depends_on = None
 
 
 def upgrade() -> None:
-    position_type_table = op.create_table(
-        'position_type',
+    position_table = op.create_table(
+        'position',
         sa.Column('id', sa.Integer, nullable=False),
         sa.Column('name', sa.String(80), nullable=False),
         sa.Column('active', sa.Boolean, nullable=False, default=True),
@@ -27,7 +27,7 @@ def upgrade() -> None:
     )
 
     op.bulk_insert(
-        position_type_table,
+        position_table,
         [
             {"name": "Loose-head Prop", "active": True},
             {"name": "Front Row Forward", "active": True},
@@ -53,5 +53,5 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table('position_type')
+    op.drop_table('position')
 

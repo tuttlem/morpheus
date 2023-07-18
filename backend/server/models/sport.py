@@ -1,8 +1,8 @@
 from server.app import db, ma
 
 
-class SportType(db.Model):
-    __tablename__ = 'sport_type'
+class Sport(db.Model):
+    __tablename__ = 'sport'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), required=True)
@@ -16,14 +16,14 @@ class SportType(db.Model):
         return f"{self.id}"
 
 
-class SportTypeSchema(ma.SQLAlchemySchema):
+class SportSchema(ma.SQLAlchemySchema):
     class Meta:
-        model = SportType
+        model = Sport
 
     id = ma.auto_field()
     name = ma.auto_field()
     active = ma.auto_field()
 
 
-sport_type_schema = SportTypeSchema()
-sport_types_schema = SportTypeSchema(many=True)
+sport_schema = SportSchema()
+sports_schema = SportSchema(many=True)

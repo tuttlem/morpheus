@@ -1,8 +1,8 @@
 from server.app import db, ma
 
 
-class PositionType(db.Model):
-    __tablename__ = 'position_type'
+class Skill(db.Model):
+    __tablename__ = 'skill'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), required=True)
@@ -16,14 +16,14 @@ class PositionType(db.Model):
         return f"{self.id}"
 
 
-class PositionTypeSchema(ma.SQLAlchemySchema):
+class SkillSchema(ma.SQLAlchemySchema):
     class Meta:
-        model = PositionType
+        model = Skill
 
     id = ma.auto_field()
     name = ma.auto_field()
     active = ma.auto_field()
 
 
-position_type_schema = PositionTypeSchema()
-position_types_schema = PositionTypeSchema(many=True)
+skill_schema = SkillSchema()
+skills_schema = SkillSchema(many=True)
