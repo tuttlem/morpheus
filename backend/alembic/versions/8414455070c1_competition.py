@@ -33,6 +33,9 @@ def upgrade() -> None:
         sa.Column('sport_id', sa.Integer, nullable=False),
         sa.Column('structure_id', sa.Integer, nullable=False),
         sa.Column('image', sa.String(80), nullable=False),
+        sa.Column('win_points', sa.Integer, nullable=False),
+        sa.Column('bye_points', sa.Integer, nullable=False),
+        sa.Column('draw_points', sa.Integer, nullable=False),
 
         sa.PrimaryKeyConstraint('id'),
         sa.ForeignKeyConstraint(['sport_id'], ['sport.id']),

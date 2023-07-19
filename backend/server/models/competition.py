@@ -10,11 +10,19 @@ class Competition(db.Model):
     structure_id = db.Column(db.Integer, db.ForeignKey('structure.id'), required=True)
     image = db.Column(db.String(80), required=True)
 
-    def __init__(self, name, sport_id, structure_id, image):
+    win_points = db.Column(db.Integer, primary_key=True)
+    bye_points = db.Column(db.Integer, primary_key=True)
+    draw_points = db.Column(db.Integer, primary_key=True)
+
+    def __init__(self, name, sport_id, structure_id, image, win_points, bye_points, draw_points):
         self.name = name
         self.sport_id = sport_id
         self.structure_id = structure_id
         self.image = image
+
+        self.win_points = win_points
+        self.bye_points = bye_points
+        self.draw_points = draw_points
 
     def __repr__(self):
         return f"{self.id}"
@@ -29,6 +37,9 @@ class CompetitionSchema(ma.SQLAlchemySchema):
     sport_id = ma.auto_field()
     structure_id = ma.auto_field()
     image = ma.auto_field()
+    win_points = ma.auto_field()
+    bye_points = ma.auto_field()
+    draw_points = ma.auto_field()
 
 
 competition_schema = CompetitionSchema()
