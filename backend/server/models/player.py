@@ -5,10 +5,10 @@ class Player(db.Model):
     __tablename__ = 'player'
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(80), required=True)
-    last_name = db.Column(db.String(80), required=True)
-    location = db.Column(db.String(80), required=True)
-    image = db.Column(db.String(80), required=True)
+    first_name = db.Column(db.String(80), nullable=False)
+    last_name = db.Column(db.String(80), nullable=False)
+    location = db.Column(db.String(80), nullable=False)
+    image = db.Column(db.String(80), nullable=False)
 
 
     def __init__(self, first_name, last_name, location, image):

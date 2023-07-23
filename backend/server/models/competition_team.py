@@ -5,9 +5,9 @@ class CompetitionTeam(db.Model):
     __tablename__ = 'competition_team'
 
     id = db.Column(db.Integer, primary_key=True)
-    competition_id = db.Column(db.Integer, db.ForeignKey('competition.id'), required=True)
-    team_id = db.Column(db.Integer, db.ForeignKey('team.id'), required=True)
-    points = db.Column(db.Integer, required=True)
+    competition_id = db.Column(db.Integer, db.ForeignKey('competition.id'), nullable=False)
+    team_id = db.Column(db.Integer, db.ForeignKey('team.id'), nullable=False)
+    points = db.Column(db.Integer, nullable=False)
 
     def __init__(self, competition_id, team_id, points):
         self.competition_id = competition_id

@@ -5,9 +5,9 @@ class Stadium(db.Model):
     __tablename__ = 'stadium'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), required=True)
-    location = db.Column(db.String(80), required=True)
-    image = db.Column(db.String(80), required=True)
+    name = db.Column(db.String(80), nullable=False)
+    location = db.Column(db.String(80), nullable=False)
+    image = db.Column(db.String(80), nullable=False)
 
     def __init__(self, name, location, image):
         self.name = name

@@ -5,9 +5,9 @@ class PlayerSkill(db.Model):
     __tablename__ = 'player_skill'
 
     id = db.Column(db.Integer, primary_key=True)
-    player_id = db.Column(db.Integer, db.ForeignKey('player.id'), required=True)
-    skill_id = db.Column(db.Integer, db.ForeignKey('skill.id'), required=True)
-    level = db.Column(db.Integer, required=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=False)
+    skill_id = db.Column(db.Integer, db.ForeignKey('skill.id'), nullable=False)
+    level = db.Column(db.Integer, nullable=False)
 
     def __init__(self, player_id, skill_id, level):
         self.player_id = player_id

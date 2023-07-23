@@ -5,9 +5,9 @@ class SportPosition(db.Model):
     __tablename__ = 'sport_position'
 
     id = db.Column(db.Integer, primary_key=True)
-    sport_id = db.Column(db.Integer, db.ForeignKey('sport.id'), required=True)
-    position_id = db.Column(db.Integer, db.ForeignKey('position.id'), required=True)
-    number = db.Column(db.Integer, required=True)
+    sport_id = db.Column(db.Integer, db.ForeignKey('sport.id'), nullable=False)
+    position_id = db.Column(db.Integer, db.ForeignKey('position.id'), nullable=False)
+    number = db.Column(db.Integer, nullable=False)
 
     def __init__(self, sport_id, position_id, number):
         self.sport_id = sport_id

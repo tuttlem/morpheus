@@ -5,8 +5,8 @@ class Sport(db.Model):
     __tablename__ = 'sport'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), required=True)
-    active = db.Column(db.Boolean, required=True)
+    name = db.Column(db.String(80), nullable=False)
+    active = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, name, active):
         self.name = name

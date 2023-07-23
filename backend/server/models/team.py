@@ -5,9 +5,9 @@ class Team(db.Model):
     __tablename__ = 'team'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), required=True)
-    home_stadium_id = db.Column(db.Integer, db.ForeignKey('stadium.id'), required=True)
-    image = db.Column(db.String(80), required=True)
+    name = db.Column(db.String(80), nullable=False)
+    home_stadium_id = db.Column(db.Integer, db.ForeignKey('stadium.id'), nullable=False)
+    image = db.Column(db.String(80), nullable=False)
 
     def __init__(self, name, home_stadium_id, image):
         self.name = name

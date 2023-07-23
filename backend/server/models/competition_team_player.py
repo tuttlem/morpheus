@@ -5,10 +5,10 @@ class CompetitionTeamPlayer(db.Model):
     __tablename__ = 'competition_team_player'
 
     id = db.Column(db.Integer, primary_key=True)
-    competition_team_id = db.Column(db.Integer, db.ForeignKey('competition_team.id'), required=True)
-    player_id = db.Column(db.Integer, db.ForeignKey('player.id'), required=True)
-    position_id = db.Column(db.Integer, db.ForeignKey('position.id'), required=True)
-    captain = db.Column(db.Boolean, required=True)
+    competition_team_id = db.Column(db.Integer, db.ForeignKey('competition_team.id'), nullable=False)
+    player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=False)
+    position_id = db.Column(db.Integer, db.ForeignKey('position.id'), nullable=False)
+    captain = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, competition_team_id, player_id, captain):
         self.competition_team_id = competition_team_id

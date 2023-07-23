@@ -5,10 +5,10 @@ class Competition(db.Model):
     __tablename__ = 'competition'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), required=True)
-    sport_id = db.Column(db.Integer, db.ForeignKey('sport.id'), required=True)
-    structure_id = db.Column(db.Integer, db.ForeignKey('structure.id'), required=True)
-    image = db.Column(db.String(80), required=True)
+    name = db.Column(db.String(80), nullable=False)
+    sport_id = db.Column(db.Integer, db.ForeignKey('sport.id'), nullable=False)
+    structure_id = db.Column(db.Integer, db.ForeignKey('structure.id'), nullable=False)
+    image = db.Column(db.String(80), nullable=False)
 
     win_points = db.Column(db.Integer, primary_key=True)
     bye_points = db.Column(db.Integer, primary_key=True)

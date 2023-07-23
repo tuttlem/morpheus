@@ -6,18 +6,18 @@ class CompetitionGame(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    competition_id = db.Column(db.Integer, db.ForeignKey('competition.id'), required=True)
-    round = db.Column(db.Integer, required=True)
-    game_number = db.Column(db.Integer, required=True)
-    stage_id = db.Column(db.Integer, db.ForeignKey('stage.id'), required=True)
+    competition_id = db.Column(db.Integer, db.ForeignKey('competition.id'), nullable=False)
+    round = db.Column(db.Integer, nullable=False)
+    game_number = db.Column(db.Integer, nullable=False)
+    stage_id = db.Column(db.Integer, db.ForeignKey('stage.id'), nullable=False)
 
-    home_team_id = db.Column(db.Integer, db.ForeignKey('team.id'), required=True)
+    home_team_id = db.Column(db.Integer, db.ForeignKey('team.id'), nullable=False)
     home_score = db.Column(db.Integer)
 
-    away_team_id = db.Column(db.Integer, db.ForeignKey('team.id'), required=True)
+    away_team_id = db.Column(db.Integer, db.ForeignKey('team.id'), nullable=False)
     away_score = db.Column(db.Integer)
 
-    stadium_id = db.Column(db.Integer, db.ForeignKey('stadium.id'), required=True)
+    stadium_id = db.Column(db.Integer, db.ForeignKey('stadium.id'), nullable=False)
 
     def __init__(self, competition_id, round_num, game_number, stage_id, home_team_id, home_score, away_team_id, away_score, stadium_id):
         self.competition_id = competition_id
