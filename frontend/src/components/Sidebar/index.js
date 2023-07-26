@@ -26,7 +26,7 @@ const Sidebar = () => {
           Home
         </NavLink>
 
-        <NavLink tag={Link} to={"/"}>
+        <NavLink tag={Link} to={"/competitions"}>
           <FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon>&nbsp;
           Competitions
         </NavLink>
@@ -41,7 +41,7 @@ const Sidebar = () => {
           Players
         </NavLink>
 
-        <NavLink tag={Link} to={"/"}>
+        <NavLink tag={Link} to={"/stadiums"}>
           <FontAwesomeIcon icon={faHockeyPuck}></FontAwesomeIcon>&nbsp;
           Stadiums
         </NavLink>
