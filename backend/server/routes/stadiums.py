@@ -19,6 +19,20 @@ def get_stadium(stadium_id):
     return make_response(stadium, 200)
 
 
+@app.route('/stadiums/<int:id>', methods=["DELETE"])
+def delete_stadium(id):
+    record = Stadium.query.get(id)
+
+    if record is None:
+        return make_response({}, 404)
+
+    Stadium.query.filter_by(id=id).delete()
+    db.session.commit()
+
+
+    return make_response({}, 204)
+
+
 @app.route('/stadiums/<int:id>', methods=["PUT"])
 def update_stadium(id):
     stadium = Stadium.query.get(id)

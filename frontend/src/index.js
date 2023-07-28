@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import "./index.css"
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";

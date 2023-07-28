@@ -6,6 +6,40 @@ import axios from "axios";
 import {faEdit} from "@fortawesome/free-solid-svg-icons/faEdit";
 import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
+import { confirmAlert } from 'react-confirm-alert';
+
+const handleDelete = (id) => {
+  const options = {
+    title: 'Are you sure?',
+    message: 'Confirm that you want to delete this item',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: () => {
+          axios.delete(`http://localhost:5000/stadiums/${id}`)
+            .then(response => {
+              toast.info('Item deleted');
+              window.location.reload(false);
+            })
+            .catch(error => {
+              toast.error('Unable to delete the requested item');
+              console.error(error);
+            });
+        }
+      },
+      {
+        label: 'No',
+        onClick: () => {}
+      }
+    ],
+    closeOnEscape: true,
+    closeOnClickOutside: true,
+    keyCodeForClose: [8, 32],
+    overlayClassName: "overlay-custom-class-name"
+  };
+
+  confirmAlert(options);
+};
 
 const CardRow = ({ data }) => {
   return (
@@ -23,11 +57,9 @@ const CardRow = ({ data }) => {
               </Button>
             </Link>
 
-            <Link to={`/stadiums/${item.id}/delete`}>
-              <Button color="danger" size="sm">
-                <FontAwesomeIcon icon={faDeleteLeft}></FontAwesomeIcon>&nbsp;
-              </Button>
-            </Link>
+            <Button color="danger" size="sm" onClick={() => handleDelete(item.id)}>
+              <FontAwesomeIcon icon={faDeleteLeft}></FontAwesomeIcon>&nbsp;
+            </Button>
 
           </CardBody>
         </Card>
